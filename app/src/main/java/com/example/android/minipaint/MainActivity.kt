@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val myCanvasView = MyCanvasView(this)
-        myCanvasView.fitsSystemWindows=false
+        myCanvasView.systemUiVisibility=SYSTEM_UI_FLAG_FULLSCREEN
         myCanvasView.contentDescription = getString(R.string.canvasContentDescription)
         setContentView(myCanvasView)
 
