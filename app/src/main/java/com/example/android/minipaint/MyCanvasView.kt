@@ -16,6 +16,7 @@ class MyCanvasView(context: Context) : View(context) {
 
     private val backgroundColor = ResourcesCompat.getColor(resources, R.color.colorBackground, null)
     private val drawColor = ResourcesCompat.getColor(resources, R.color.colorPaint, null)
+    private lateinit var frame: Rect
 
     private var path = Path()
     private var motionTouchEventX = 0f
@@ -49,11 +50,18 @@ class MyCanvasView(context: Context) : View(context) {
         extraCanvas= Canvas(extraBitmap)
 
         extraCanvas.drawColor(backgroundColor)
+
+        // Calculate a rectangular frame around the picture.
+        val inset = 40
+        frame = Rect(inset, inset, width - inset, height - inset)
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.drawBitmap(extraBitmap, 0f, 0f, null)
+
+        // Draw a frame around the canvas.
+        canvas.drawRect(frame, paint)
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
